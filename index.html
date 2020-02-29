@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="./util.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        
+        <div id="boxParent">
+        </div>
+
+        <div id="color-selector">
+            <input type="range" min="0" max="4095" value="1" class="slider" id="colorRange">
+            <div class="box" id="chosen-color"></div>
+        </div>
+
+        <form id="form-text" onsubmit="download()">
+            <input id="download-title" type="text" name="name" value="test.txt">
+            <input type="submit" value="Download">
+        </form>
+    </div>
+
+
+</body>
+
+<script>
+
+    var color = document.getElementById("colorRange");
+    var chosenColor = document.getElementById("chosen-color");
+
+    var num = 0;
+    var currColor = "#fff";
+    color.onchange = function() {
+        num = this.value;
+        var hex = decToHex(this.value);
+
+        currColor = "#" + hex.toString();
+
+        chosenColor.style.background = currColor;
+        chosenColor.innerHTML = hex.toString();
+
+    }
+
+    function decToHex(num) {
+        var n = parseInt(num);
+        var hex = n.toString(16);
+        return hex;
+    }
+
+    window.onclick = e => {
+        var id = e.target.id;
+
+        if(id == "") return;
+        id = parseInt(id);
+        if(typeof id !== 'number' || isNaN(id)) return;
+
+        var box = document.getElementById(id);
+        box.style.background = currColor;
+        boxArray[id - 1].color = currColor.replace("#", "");
+
+        console.log(boxArray[id - 1]);
+    }
+
+    function download() {
+
+        var text = "";
+
+        for(var i = 0; i < boxArray.length; i++) {
+            if(i === (boxArray.length - 1)) {
+                text = text + boxArray[i].color;
+            } else {
+                text = text + boxArray[i].color + "\n";
+            }
+            
+        }
+
+        var element = document.getElementById("download-title");
+
+        if(element.value === "") {
+            alert("please enter a name for the file");
+            return;
+        }
+
+        var filename = element.value;
+
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,36 @@
+.box {
+    border: black 1px solid;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    margin-top: 0;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    font-size: 45px;
+    text-align: center;
+}
+
+.row {
+    display: block;
+    float:left;
+    width:100%;
+}
+
+#boxParent {
+    width: 80%;
+}
+
+#color-selector {
+    width: 10%;
+}
+
+#form-text {
+    width: 10%;
+}
+
+.main-wrapper {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100%;
+}
