@@ -1,13 +1,13 @@
 .box {
-    border: black 1px solid;
-    width: 80px;
-    height: 80px;
+    border: black 0.5px solid;
+    width: 40px;
+    height: 40px;
     margin: 0 auto;
     margin-top: 0;
     cursor: pointer;
     display: inline-block;
     float: left;
-    font-size: 45px;
+    font-size: 25px;
     text-align: center;
 }
 
@@ -18,15 +18,39 @@
 }
 
 #boxParent {
-    width: 80%;
+    width: 60%;
 }
 
+.right-side {
+    display: block;
+    width: 40%;
+}
+
+
 #color-selector {
-    width: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+#chosen-color {
+    margin: 0;
+    margin-right: 10px;
+}
+
+#colorRange {
+    margin: 0;
 }
 
 #form-text {
-    width: 10%;
+    width: 40%;
+}
+
+#text-label {
+    margin-right: 10px;
+    line-height: 40px;
+    text-align: center;
 }
 
 .main-wrapper {

@@ -11,7 +11,7 @@
     </script>
     <script type="text/javascript" src="./util.js"></script>
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>Sprite Creator</title>
 </head>
 <body>
 
@@ -20,15 +20,19 @@
         <div id="boxParent">
         </div>
 
-        <div id="color-selector">
-            <input type="range" min="0" max="4095" value="1" class="slider" id="colorRange">
-            <div class="box" id="chosen-color"></div>
+        <div class="right-side">
+            <div id="color-selector">
+                <label id="text-label">N/A</label>
+                <div class="box" id="chosen-color"></div>
+                <input type="range" min="256" max="4095" value="1" class="slider" id="colorRange">
+            </div>
+
+            <form id="form-text" onsubmit="download()">
+                <input id="download-title" type="text" name="name" placeholder="file name">
+                <input type="submit" value="Download" style="margin-top: 10px;">
+            </form>
         </div>
 
-        <form id="form-text" onsubmit="download()">
-            <input id="download-title" type="text" name="name" value="test.txt">
-            <input type="submit" value="Download">
-        </form>
     </div>
 
 
@@ -48,8 +52,7 @@
         currColor = "#" + hex.toString();
 
         chosenColor.style.background = currColor;
-        chosenColor.innerHTML = hex.toString();
-
+        document.getElementById("text-label").innerHTML = hex.toString();
     }
 
     function decToHex(num) {
@@ -80,7 +83,7 @@
             if(i === (boxArray.length - 1)) {
                 text = text + boxArray[i].color;
             } else {
-                text = text + boxArray[i].color + "\n";
+                text = text + boxArray[i].color + "\r\n";
             }
             
         }
